@@ -1,7 +1,4 @@
-# Default values for gloo-chart.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
+#values for Gloo Helm chart
 ingress:
   type: NodePort
   replicaCount: 1
@@ -9,7 +6,7 @@ ingress:
   securePort: 8443
   adminPort: 19000
   image: "soloio/envoy"
-  imageTag: "v0.1.2"
+  imageTag: v0.1.6-111
   imagePullPolicy: IfNotPresent
 
 gloo:
@@ -17,42 +14,40 @@ gloo:
   replicaCount: 1
   port: 8081
   image: "soloio/gloo"
-  imageTag: "v0.1.2"
+  imageTag: v0.1.6-111
   imagePullPolicy: IfNotPresent
 
-#  extra
+
+#  add-ons 
 gloo_function_discovery:
   image: soloio/gloo-function-discovery
-  imageTag: v0.1.4
+  imageTag: 5158034
   imagePullPolicy: IfNotPresent
   enable: true
 
 gloo_ingress_controller:
   image: soloio/gloo-ingress-controller
-  imageTag: v0.1.1
+  imageTag: 90f2b21
   imagePullPolicy: IfNotPresent
   enable: true
 
 gloo_k8s_service_discovery:
   image: soloio/gloo-k8s-service-discovery
-  imageTag: v0.1.1
+  imageTag: 12b4753
   imagePullPolicy: IfNotPresent
   enable: true
 
-grafana:
-  image: grafana/grafana
-  imageTag: 4.2.0
+opentracing:
   imagePullPolicy: IfNotPresent
   enable: false
+  jaeger: jaegertracing/all-in-one:latest
+  status: install
 
-prometheus:
-  image: quay.io/coreos/prometheus
-  imageTag: latest
+metrics:
   imagePullPolicy: IfNotPresent
   enable: false
+  grafana: grafana/grafana:4.2.0
+  prometheus: quay.io/coreos/prometheus:latest
+  statsd-exporter: prom/statsd-exporter:latest
+  status: install
 
-kube_state_metrics:
-  image: gcr.io/google_containers/kube-state-metrics
-  imageTag: v0.5.0
-  imagePullPolicy: IfNotPresent
-  enable: false

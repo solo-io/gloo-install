@@ -9,14 +9,14 @@ ingress:
   securePort: 8443
   adminPort: 19000
   image: "soloio/envoy"
-  imageTag: "v0.1.6-77"
+  imageTag: "v0.1.5-81"
   imagePullPolicy: IfNotPresent
 
 gloo:
   replicaCount: 1
   port: 8081
   image: "soloio/gloo"
-  imageTag: "v0.1.4"
+  imageTag: "v0.1.5-81"
   imagePullPolicy: IfNotPresent
 
 #  extra
@@ -48,10 +48,23 @@ opentracing:
 
 metrics:
   imagePullPolicy: IfNotPresent
-  enable: false
-  grafana: grafana/grafana:4.2.0
-  prometheus: quay.io/coreos/prometheus:latest
+  enable: true
+  service_monitor: false 
+  prometheus_op: true 
   statsd_exporter: prom/statsd-exporter:latest
   statsd_host: statsd.server
   statsd_port: 9451
-  status: disable
+  status: all
+
+prometheus:
+  serviceMonitors:
+  - name: "statsd-service-monitor"
+    selector:
+      matchLabels:
+        app: statsd
+    endpoints:
+    - port: statsd
+  
+grafana:
+  service:
+    type: NodePort

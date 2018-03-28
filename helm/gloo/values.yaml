@@ -63,7 +63,7 @@ prometheus:
       matchLabels:
         app: statsd
     endpoints:
-    - port: statsd
+    - port: web
   
 grafana:
   service:

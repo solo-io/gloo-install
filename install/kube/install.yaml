@@ -91,7 +91,7 @@ spec:
         gloo: control-plane
     spec:
       containers:
-      - image: soloio/control-plane:v0.1.7-108
+      - image: soloio/control-plane:monorepo-17-17
         name: gloo
         ports:
         - containerPort: 8081
@@ -180,7 +180,7 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
       containers:
-      - image: soloio/envoy:v0.1.7-108
+      - image: soloio/envoy:monorepo-17
         name: envoy
         ports:
         - containerPort: 8080
@@ -325,7 +325,7 @@ spec:
         gloo: kube-upstream-discovery
     spec:
       containers:
-      - image: soloio/kube-upstream-discovery:v0.1.2-108
+      - image: soloio/kube-upstream-discovery:monorepo-17-17
         name: kube-upstream-discovery
         env:
         - name: GRPC_TRACE
@@ -355,7 +355,7 @@ spec:
         gloo: function-discovery
     spec:
       containers:
-      - image: soloio/function-discovery:v0.1.7-108
+      - image: soloio/function-discovery:monorepo-17-17
         name: function-discovery
         env:
         - name: GRPC_TRACE
@@ -403,7 +403,7 @@ spec:
         gloo: ingress-controller
     spec:
       containers:
-      - image: soloio/kube-ingress-controller:v0.1.2-108
+      - image: soloio/kube-ingress-controller:monorepo-17-17
         name: ingress-controller
         env:
         - name: DEBUG

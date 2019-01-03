@@ -1,3 +1,4 @@
+# THIS REPOSITORY IS DEPRECATED - It has moved to the main gloo repo. see [here](https://github.com/solo-io/gloo/blob/master/install/kube.yaml).
 
 <h1 align="center">
     <img src="Gloo-01.png" alt="Gloo" width="200" height="242">
